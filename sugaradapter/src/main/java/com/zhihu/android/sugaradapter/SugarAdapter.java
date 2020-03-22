@@ -159,6 +159,8 @@ public final class SugarAdapter extends RecyclerView.Adapter<SugarHolder> {
     private SparseArray<View> mPreInflateArray;
 
     private SugarAdapter(@NonNull List<?> list, @NonNull SparseArray<Container> containerArray, boolean preInflate) {
+        setHasStableIds(true);
+
         mList = list;
         mContainerArray = containerArray;
         mDispatcherMap = new HashMap<>();
@@ -523,5 +525,10 @@ public final class SugarAdapter extends RecyclerView.Adapter<SugarHolder> {
     @Override
     public boolean onFailedToRecycleView(@NonNull SugarHolder holder) {
         return holder.onFailedToRecycleView();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }
